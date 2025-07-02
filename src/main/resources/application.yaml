@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5444/postgres
+    username: postgres
+    password: pass
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 12
+      connection-timeout: 10000 # 10 секунд в миллисекундах
+      initialization-fail-timeout: 60000 # 1 минута на инициализацию
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    properties:
+      hibernate:
+        batch_size: 50
+        fetch_size: 50
+        show_sql: true
+        format_sql: true
+        hbm2ddl.auto: validate
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+db:
+  pool:
+    size: 24
+
+logging:
+  level:
+    root: WARN
+    evil.dalas.yandex.ru.database.Pool.ConnectionPool: INFO
+    org.springframework.jdbc.core: DEBUG
+  file:
+    name: ./logs/application.log
